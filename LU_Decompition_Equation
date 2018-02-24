@@ -1,0 +1,32 @@
+# -*- coding: utf-8 -*-
+"""
+
+"""
+
+import numpy as np
+print ("Decomposition of LU")
+n = 3
+matrix = np.zeros([n,n])
+U = np.zeros([n,n])
+L = np.zeros([n,n])
+print("new elements")
+for r in range(0,n):
+    for c in range(0,n):
+        matrix[r,c] = (input("Element a["+str(r+1)+","+str(c+1)+"]"))
+        matrix[r,c] = float(matrix[r,c])
+        U[r,c] = matrix[r,c]
+
+for k in range(0,n):
+    for r in range(0,n):
+        if (k==r):
+            L[k,r]= 1
+        if (k<r):
+            factor = (matrix[r,k]/matrix[k,k])
+            L[r,k] = factor
+            for c in range(0,n):
+                matrix[r,c] = matrix[r,c] - (factor*matrix[k,c])
+                U[r,c] = matrix[r,c]
+print("Matrix L")
+print L
+print "Matrix U"
+print U
