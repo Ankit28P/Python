@@ -1,0 +1,27 @@
+# -*- coding: utf-8 -*-
+"""
+Multiplication of Matrixs.
+"""
+import numpy
+Y = [[1,6],[3,10],[7,4]]
+Z = [[1,3],[0.5,2]]
+
+Y = numpy.array(Y)
+Z = numpy.array(Z)
+
+[I,J] = Y.shape
+[K,L] = Z.shape
+
+
+X = numpy.zeros((I,L))
+
+
+for i in range(I):
+    for j in range(L):
+        for k in range(K):
+                    
+            X[i,j] += Y[i,k] * Z[k,j]
+            
+
+print 'X = [Y]*[Z]'
+print 'X = {}'.format(X)
