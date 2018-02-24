@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Thu Feb 08 22:33:58 2018
 
-@author: Ankit Patel
 """
 
 
