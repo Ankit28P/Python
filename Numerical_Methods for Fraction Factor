@@ -1,0 +1,35 @@
+# -*- coding: utf-8 -*-
+"""
+
+"""
+import numpy as np
+import matplotlib.pyplot as plt
+
+Den = 1.23      #fluid's density (kg/m^3)
+dv = 1.79e-5  # Dynamic viscosity (N)
+D = 0.0005   # Diameter (m)
+V = 40  # Velocity (m/s)
+Rn = .0015e-3  # Roughness (m)
+#f= [0.008, 0.009, 0.010, 0.020, 0.030, 0.040, 0.050, 0.060, 0.070, 0.08,]    # friction factor
+f=np.arange(0.008,0.08,0.001)
+
+#Reynolds Numbere quation
+Re = Den*V*D/dv
+print Re
+# Using Colebrook Equation
+Ce = 1./np.sqrt(f)+(2.0*np.log10(Rn/(3.7*D))+(2.51/(Re*np.sqrt(f))))
+
+#Swamee-Jain Equation
+x = np.log((Rn/3.7*D)+(5.74/((Re*10)**0.9)))
+SJf = 1.325/x**2
+
+plt.figure()
+plt.plot(f,Ce)
+plt.xlabel("f")
+plt.ylabel("Ce")
+plt.title("Initial guess")
+plt.grid(True)
+
+print ("Colebrook Equation Output:")
+print Ce
+print ("Swami-Jain Equation: %f"%SJf)
