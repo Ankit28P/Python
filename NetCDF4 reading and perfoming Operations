@@ -1,0 +1,38 @@
+#import required packages
+import netCDF4 
+import numpy as np
+import matplotlib.pyplot as plt
+
+#i used jupyter notebook VM based. I downloaded this file in VM and access it using python.
+#reading file 
+nc_file = netCDF4.Dataset('irma/wrfout_d01_2017-09-10_18:00:00', 'r', format='NETCDF4')
+
+# reading the variables name U10 which is wind data from Nc_file
+WindData = nc_file.variables['U10']
+print(WindData)
+
+
+# checking data type explicitly
+print(type(WindData))
+
+
+# checking other parameters of the WindData
+print(WindData.description)
+print(WindData.units)
+print(WindData.dimensions)
+
+
+# store data in numpy array format
+U10 = WindData[:]
+print(type(U10))
+
+
+# Viewing wind data
+plt.contourf(U10[0,:,:])
+plt.show()
+
+
+# Finding min, max and mean value using numpy
+print('Minimum value: {}'.format(np.min(U10)))
+print('Maximum value: {}'.format(np.max(U10)))
+print('Mean value:    {}'.format(np.mean(U10)))
