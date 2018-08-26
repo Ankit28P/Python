@@ -1,0 +1,48 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Apr  8 15:12:28 2018
+
+@author: Ankit Patel
+"""
+import random
+data = random.sample(range(1,100),10)
+print(data)
+
+def insertion_sort(data):
+    size = len(data)
+    j = 1
+    while j < size:
+        for i in range(j):
+            if data[j] < data[i]:
+                temp = data[i]
+                data[i] =data[j]
+                data[j] = temp
+        j = j+1
+    return data
+data = insertion_sort(data)
+print(data)
+
+def Linear(data, x):
+    for i in range(len(data)):
+        if data[i] == x:
+            return i
+    return False
+
+print(Linear(data,6))
+
+def binary_search(data, q):
+    lower = 0
+    upper = len(data)
+    while True:
+        pivot = lower + (upper - lower) // 2
+        val = data[pivot]
+        if q == val:
+            return pivot
+        elif q > val:
+            if lower == pivot:
+                return -1
+            lower = pivot
+        elif q < val:
+            upper = pivot
+                
+print(binary_search(data,6))
