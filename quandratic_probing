@@ -1,0 +1,30 @@
+import matplotlib.pyplot as plt
+import random
+
+def hash_quadratic(key, values):
+    tablesize=len(values)
+    index=key%tablesize
+    probes=0
+    if values[index] is None:
+        values[index]=key
+        probes+=1
+        return probes
+    else:
+        while values[index] is not None:
+            index = (index+1**2)% tablesize
+            probes+=1
+        values[index]=key
+    return probes
+
+lst = []
+for i in range(1000):
+    lst.append(random.randint(0,10000))
+
+probes = hash_quadratic(1000, lst)
+print(probes)
+
+plt.xlabel('Count')
+plt.ylabel('Number of Operations')
+plt.title('average probe sequence length')
+plt.plot(lst,probes)
+plt.show()
