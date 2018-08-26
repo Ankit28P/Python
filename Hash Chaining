@@ -1,0 +1,51 @@
+
+import time
+start_time = time.time()
+import random
+a = []
+b = []
+c = []
+d = []
+e = []
+for i in range(200):
+    a.append(random.randint(0,2000))
+    b.append(random.randint(1001,2000))
+    c.append(random.randint(0,2000))
+    d.append(random.randint(0,2000))
+    e.append(random.randint(0,2000))
+
+Hash_chaining = [[] for _ in range(5)]
+
+def add(Hash_chaining, key, value):
+    h_key = hash(key) % len(Hash_chaining)
+    key_exists = False
+    bucket = Hash_chaining[h_key]    
+    for i, kv in enumerate(bucket):
+        k, v = kv
+        if key == k:
+            key_exists = True 
+            break
+    if key_exists:
+        bucket[i] = ((key, value))
+    else:
+        bucket.append((key, value))
+def find(Hash_chaining, key):
+    h_key = hash(key) % len(Hash_chaining)    
+    bucket = Hash_chaining[h_key]
+    for i, kv in enumerate(bucket):
+        k, v = kv
+        if key == k:
+            return v
+       
+add(Hash_chaining, 10, a)
+add(Hash_chaining, 20, b)
+add(Hash_chaining, 25, c)
+add(Hash_chaining, 40, d)
+add(Hash_chaining, 35, e)
+
+print(Hash_chaining)
+
+print(find(Hash_chaining, 25))
+    
+time.time() - start_time
+print("--- %s for find value seconds ---" % (time.time() - start_time))
