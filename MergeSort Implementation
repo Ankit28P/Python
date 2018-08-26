@@ -1,0 +1,62 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Apr 14 20:27:45 2018
+
+@author: Ankit Patel
+"""
+import random
+import time
+start_time = time.time()
+#peration_count = 0
+
+def MergeSort(value):
+#    global operation_count
+    if len(value)<2:
+#        operation_count += 1
+        return value
+    
+    mid = int(len(value)/2)
+    
+    left_value = MergeSort(value[:mid])
+    right_value = MergeSort(value[mid:])
+    
+    return Merge(left_value,right_value)
+
+def Merge(left_value,right_value):
+#    global operation_count
+    scratch =[]
+    left_index = 0
+    right_index = 0
+    
+    while left_index < len(left_value) and right_index<len(right_value):
+        if left_value[left_index] < right_value[right_index]:
+            scratch.append(left_value[left_index])
+#            operation_count += 1
+            left_index += 1
+        else:
+            scratch.append(right_value[right_index])
+#            operation_count += 1
+            right_index += 1
+#    operation_count += 1
+    scratch += left_value[left_index:]
+    scratch += right_value[right_index:]
+    
+    return scratch
+
+def main():
+    print("Merge Sort: ")
+    #scratch_nearly = []
+    n = []
+    for i in range(100000):
+        n.append(random.randint(1,100000))
+    x = MergeSort(n)
+        #scratch_nearly.append(x)
+    print(x)
+    print("--- %s seconds ---" % (time.time() - start_time))
+#    print("Number of Operation:{}".format(operation_count))
+   
+    
+    
+    
+if __name__ == "__main__":
+    main()
