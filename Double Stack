@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr  2 08:35:03 2018
+
+@author: Ankit Patel
+"""
+
+class double_stack:
+    def __init__(self, n):
+        self.size = n
+        self.array = [None] * n
+        self.head1 = -1
+        self.head2 = self.size
+        
+    def pop1(self):
+        if self.head1 >= 0:
+            idx = self.array[self.head1]
+            self.head1 = self.head1-1
+            return idx
+        else:
+            print("overflow")
+            exit(1)
+        
+    def push1(self, idx):
+        if self.head1 < self.head2-1:
+            self.head1 = self.head1+1
+            self.array[self.head1]  = idx
+        else:
+            print("overflow")
+            exit(1)
+        
+    def pop2(self):
+        if self.head2 < self.size:
+            idx = self.array[self.head2]
+            self.head2 = self.head2 + 1
+            return idx
+        else:
+            print("underflow")
+            exit()
+        
+    def push2(self, idx):
+        if self.head1 < self.head2-1:
+            self.head2 = self.head2-1
+            self.array[self.head2] = idx
+        else:
+            print("Overflow")
+            exit(1)
+            
+DS = double_stack(5)
+DS.push1(1)
+DS.push2(2)
+DS.push2(3)
+DS.push1(4)
+DS.push2(5)
+
+print("pop from stack1: "+str(DS.pop1))
+print("pop from stack2: "+str(DS.pop2))
